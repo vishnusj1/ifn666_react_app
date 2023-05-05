@@ -13,6 +13,9 @@ const Header = () => {
             <Link to="/profile">Profile</Link>
           </li>
           <li>
+            <Link to="/stock">Stock</Link>
+          </li>
+          <li>
             <Link to="/about">About Us</Link>
           </li>
           {/* <li>
