@@ -23,10 +23,9 @@ ChartJS.register(
   Colors
 );
 
-const ChartComponent = ({ historicalData,stockPrice,companyName }) => {
+const ChartComponent = ({ historicalData,stockPriceData,companyName }) => {
   const labels = [];
   const prices = [];
-  console.log(stockPrice);
   historicalData.forEach((day) => {
     labels.unshift(day.date);
     prices.unshift(day.close);

@@ -16,8 +16,7 @@ function ResultsPage() {
   const [companyOverview, setCompanyOverview] = useState([]);
   const [news, setNews] = useState([]);
   const [historicalData, setHistoricalData] = useState([]);
-  const [stockPriceData, setStockPriceData] = useState([]);
-
+  const [stockPriceData, setStockPriceData] = useState({});
 
   useEffect(() => {
     const fetchCompanyOverview = async () => {
@@ -38,10 +37,12 @@ function ResultsPage() {
         setHistoricalData(data.historical);
 
         const stockPriceResponse = await fetch(
-          `https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=88599ea4a7ca6da8cfcf788acd88cea6`
+          `https://financialmodelingprep.com/api/v3/stock-price-change/${symbol}?apikey=88599ea4a7ca6da8cfcf788acd88cea6`
         );
         const stockPrice = await stockPriceResponse.json();
-        setStockPriceData(stockPrice);
+        setStockPriceData({
+          ...stockPrice[0],
+        });
       } catch (error) {
         console.error("Error fetching company overview:", error);
       }
@@ -79,6 +80,21 @@ function ResultsPage() {
                   : ""}
               </h1>
               <span className="ov-industry">{companyOverview.Industry}</span>
+              <div className="stock-price box">
+                <div className="title">{stockPriceData.symbol}</div>
+                <div className="content">
+                  {Object.keys(stockPriceData).map((key) => {
+                    if (key !== "symbol") {
+                      return (
+                        <div key={uniqid()} className="row">
+                          <span>{key}:</span> {stockPriceData[key]}
+                        </div>
+                      );
+                    }
+                    return null;
+                  })}
+                </div>
+              </div>
               <p className="ov-description">{companyOverview.Description}</p>
               <ul></ul>
             </div>
@@ -86,7 +102,7 @@ function ResultsPage() {
               <div className="chart">
                 <ChartComponent
                   historicalData={historicalData}
-                  stockPriceData = {stockPriceData}
+                  stockPriceData={stockPriceData}
                   companyName={companyOverview.Name}
                 />
               </div>

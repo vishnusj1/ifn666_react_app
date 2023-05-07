@@ -381,3 +381,40 @@ nav a {
     
 
 /* End of Login Page */
+
+/* Stock Data Box */
+.box {
+  margin:1rem 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #f1f1f1;
+  color: #011936;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 300px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 5px;
+  width: 50%;
+}
+
+.row span {
+  font-weight: bold;
+  margin-right: 5px;
+}
