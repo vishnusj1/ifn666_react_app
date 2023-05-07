@@ -240,6 +240,12 @@ nav a {
 .stocks>.hero-text{
   text-align: start;
 }
+.search-bar-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
 /* Quick Links Section */
 .quick-links{
   display: flex;
