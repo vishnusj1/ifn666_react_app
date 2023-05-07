@@ -43,7 +43,9 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
+section{
+  padding: 0 60px;
+}
 /* Header */
 header {
   position: sticky;
@@ -131,6 +133,9 @@ nav a {
 .hero-text p {
   font-size: 1.2rem;
 }
+.hero-text span{
+  color: var(--secondary-bg-color);
+}
 
 .description {
   max-width: 800px;
@@ -158,6 +163,10 @@ nav a {
     padding: 0 20px;
   }
 
+  section {
+    padding: 0 20px;
+  }
+
   /* Home Page */
   .hero-text h1 {
     font-size: 2.5rem;
@@ -180,42 +189,14 @@ nav a {
   }
 }
 
-/* CSS For tables */
-table {
-  border-collapse: collapse;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-thead {
-  background-color: #f2f2f2;
-}
-
-th,
-td {
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-th {
-  background-color: #4caf50;
-  color: white;
-  font-weight: bold;
-}
-
-td {
-  border-bottom: 1px solid #ddd;
-}
-
 @media (max-width: 480px) {
 
   /* Header */
   nav {
+    padding: 0 10px;
+  }
+
+  section{
     padding: 0 10px;
   }
 
@@ -250,8 +231,26 @@ td {
     font-size: 0.9rem;
   }
 }
+/* Stocks */
+.stock-info {
+	display: flex;
+	justify-content: center;
+}
 
+.stocks>.hero-text{
+  text-align: start;
+}
+/* Quick Links Section */
+.quick-links{
+  display: flex;
+  margin:1rem 0;
+  justify-content: center;
+  align-items: center;
+}
 
+.quick-links>h3{
+  pointer-events: none;
+}
 .quick-link-button {
   margin: 0rem 2rem;
   padding: 10px 20px;
@@ -263,3 +262,39 @@ td {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
+/* End of Quick Links Styling */
+
+/* End of Stocks */
+
+/* Result Page Components */
+.result-page-component {
+  background-color: var(--secondary-bg-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  margin: 2rem;
+  padding: 1.5rem;
+}
+
+.result-page-component>span{
+ font-style: italic;
+}
+.news{
+  margin-top: 1rem;
+}
+.news h1{
+  margin-bottom: 1rem;
+  text-decoration: underline;
+
+}
+
+.news a{
+  font-size: 12px;
+  text-decoration: underline;
+}
+.news .summary{
+  margin-top: 1rem;
+}
+.news>ul>li{
+  margin-bottom: 1rem;
+}
+/* End of Result Page Components */

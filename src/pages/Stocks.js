@@ -1,16 +1,21 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import Layout from "../components/Layout";
 import SearchBar from "../components/SearchBar";
+import Table from "../components/Table";
+import Loader from "../components/Loader";
 
 const Stocks = () => {
   const [nasdaqList, setNasdaqList] = useState([]);
-  const [searchTerm,setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedSector, setSelectedSector] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchNasdaqList = async () => {
-    console.log('apicalled');
-    setSearchTerm('')
+    setIsLoading(true);
+    console.log("apicalled");
+    setSearchTerm("");
     const response = await axios.get(
       "https://financialmodelingprep.com/api/v3/nasdaq_constituent?apikey=af4918b3db2e900571001a068fa41140"
     );
@@ -23,34 +28,63 @@ const Stocks = () => {
         founded: company.founded,
       };
     });
-    console.log(data);
     setNasdaqList(companies);
-  }
+    setIsLoading(false);
+  };
+
   const handleSearch = (text) => {
     setSearchTerm(text);
     console.log(text);
   };
 
+  const handleSectorChange = (sector) => {
+    setSelectedSector(sector);
+    console.log(sector);
+  };
+
   const filteredList = nasdaqList.filter((company) => {
-    return company.symbol.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchSearchTerm = company.symbol
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchSelectedSector = selectedSector
+      ? company.sector === selectedSector
+      : true;
+    return matchSearchTerm && matchSelectedSector;
   });
+
+  const sectorOptions = [
+    ...new Set(nasdaqList.map((company) => company.sector)),
+  ];
 
   return (
     <Layout>
-      <div>
-        <h1>Stock Page</h1>
-        <SearchBar onSearch = {handleSearch}/>
-        <button className="quick-link-button" onClick={fetchNasdaqList}>List of Nasdaq 100 companies</button>
-        <ul>
-          {filteredList.map((company) => (
-            <li key={company.symbol}>
-              <Link to={`/stocks/${company.symbol}`}>
-                {company.symbol} - {company.name} - {company.sector}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <section className="stocks">
+        <h1 className="hero-text">Stocks</h1>
+        <SearchBar
+          onSearch={handleSearch}
+          sectorOptions={sectorOptions}
+          selectedSector={selectedSector}
+          onHandleSectorChange={handleSectorChange}
+          data={nasdaqList}
+        />
+        <div className="quick-links">
+          <h3>Quick Links:</h3>
+          <button className="quick-link-button" onClick={fetchNasdaqList}>
+            List of Nasdaq 100 companies
+          </button>
+        </div>
+        <div className="stock-info">
+          {isLoading ? (
+            <Loader />
+          ) : nasdaqList.length === 0 ? (
+            <p>
+              <i>Select any quick link to display the corresponding data.</i>
+            </p>
+          ) : (
+            <Table data={filteredList} />
+          )}
+        </div>
+      </section>
     </Layout>
   );
 };
