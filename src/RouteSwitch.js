@@ -5,11 +5,16 @@ import Profile from "./pages/Profile";
 import AboutPage from "./pages/About";
 import Stock from "./pages/Stocks";
 import ResultsPage from "./pages/ResultsPage";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
   {
     path:"/",
     element: <App />
+  },
+  {
+    path:"/login",
+    element: <Login />
   },
   {
     path:"/profile",

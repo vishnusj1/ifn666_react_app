@@ -16,6 +16,8 @@ function ResultsPage() {
   const [companyOverview, setCompanyOverview] = useState([]);
   const [news, setNews] = useState([]);
   const [historicalData, setHistoricalData] = useState([]);
+  const [stockPriceData, setStockPriceData] = useState([]);
+
 
   useEffect(() => {
     const fetchCompanyOverview = async () => {
@@ -34,6 +36,12 @@ function ResultsPage() {
         );
         const data = await dataResponse.json();
         setHistoricalData(data.historical);
+
+        const stockPriceResponse = await fetch(
+          `https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=88599ea4a7ca6da8cfcf788acd88cea6`
+        );
+        const stockPrice = await stockPriceResponse.json();
+        setStockPriceData(stockPrice);
       } catch (error) {
         console.error("Error fetching company overview:", error);
       }
@@ -78,6 +86,7 @@ function ResultsPage() {
               <div className="chart">
                 <ChartComponent
                   historicalData={historicalData}
+                  stockPriceData = {stockPriceData}
                   companyName={companyOverview.Name}
                 />
               </div>

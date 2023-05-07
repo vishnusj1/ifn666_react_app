@@ -6,12 +6,16 @@ const AboutPage = () => {
     <Layout>
       <div className="about">
         <div className="description">
-          <h2>About Us</h2>
+          <h2>About</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae
-            risus non turpis luctus aliquet sit amet vel velit. Sed tempor justo
-            nec diam blandit scelerisque. In convallis quam at volutpat feugiat.
-            Mauris sodales placerat mauris, id fringilla nunc.{" "}
+            Welcome to <span>stox</span>, where we empower investors and traders to make
+            informed decisions about their investments. Our app is designed to
+            provide you with the latest stock market data and analysis, all at
+            your fingertips. We achieve this by leveraging the power of two
+            industry-leading APIs - the FMP API and the Alpha Vantage API. These
+            APIs enable us to provide you with up-to-date and accurate stock
+            market data, including real-time stock prices, historical prices,
+            financial statements, and much more.{" "}
           </p>
         </div>
       </div>

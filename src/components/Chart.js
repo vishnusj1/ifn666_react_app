@@ -23,10 +23,10 @@ ChartJS.register(
   Colors
 );
 
-const ChartComponent = ({ historicalData,companyName }) => {
+const ChartComponent = ({ historicalData,stockPrice,companyName }) => {
   const labels = [];
   const prices = [];
-  console.log(historicalData);
+  console.log(stockPrice);
   historicalData.forEach((day) => {
     labels.unshift(day.date);
     prices.unshift(day.close);
@@ -36,7 +36,7 @@ const ChartComponent = ({ historicalData,companyName }) => {
     labels: labels,
     datasets: [
       {
-        label: `${companyName}'s Historical Data`,
+        label: `${companyName}'s Daily Historical Data`,
         data: prices,
         fill: false,
         borderColor: "rgb(75, 192, 192)",
