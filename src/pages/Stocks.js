@@ -17,7 +17,7 @@ const Stocks = () => {
     console.log("apicalled");
     setSearchTerm("");
     const response = await axios.get(
-      "https://financialmodelingprep.com/api/v3/nasdaq_constituent?apikey=88599ea4a7ca6da8cfcf788acd88cea6"
+      "https://financialmodelingprep.com/api/v3/nasdaq_constituent?apikey=8c122dfe461d9f329151cfed093513c1"
     );
     const data = response.data;
     const companies = data.map((company) => {

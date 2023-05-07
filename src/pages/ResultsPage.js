@@ -31,13 +31,13 @@ function ResultsPage() {
 
         // Call fetchCompanyData() only after fetchCompanyOverview() is successful
         const dataResponse = await fetch(
-          `https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=88599ea4a7ca6da8cfcf788acd88cea6`
+          `https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=8c122dfe461d9f329151cfed093513c1`
         );
         const data = await dataResponse.json();
         setHistoricalData(data.historical);
 
         const stockPriceResponse = await fetch(
-          `https://financialmodelingprep.com/api/v3/stock-price-change/${symbol}?apikey=88599ea4a7ca6da8cfcf788acd88cea6`
+          `https://financialmodelingprep.com/api/v3/stock-price-change/${symbol}?apikey=8c122dfe461d9f329151cfed093513c1`
         );
         const stockPrice = await stockPriceResponse.json();
         setStockPriceData({
